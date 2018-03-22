@@ -10,7 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @EnableAutoConfiguration
 @ComponentScans(value = {
-        @ComponentScan(basePackages = "com.hootboard")
+        @ComponentScan(basePackages = "com.hootboard"),
+        @ComponentScan(basePackages = "com.hootboard.common")
 })
 public class Application {
     public static void main( String[] args ) {

@@ -1,10 +1,9 @@
 package com.hootboard.api.service.user;
 
+import com.hootboard.model.EmailModel;
 import com.hootboard.model.UserModel;
 import com.hootboard.model.mapper.UserMapper;
-import com.hootboard.persistence.mysql.entity.Roles;
-import com.hootboard.persistence.mysql.entity.User;
-import com.hootboard.persistence.mysql.entity.UserRole;
+import com.hootboard.persistence.mysql.entity.*;
 import com.hootboard.persistence.mysql.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,7 +70,7 @@ public class UserServiceImpl implements UserService{
         List<UserModel> userModels = new ArrayList<>();
 
         for (User allUser : allUsers) {
-            UserModel userModel = UserMapper.user_to_userModel(allUser);
+            UserModel userModel = UserMapper.user_to_userModel(allUser, allUser.getEmails(), allUser.getAddress());
             userModels.add(userModel);
         }
 
@@ -89,7 +88,7 @@ public class UserServiceImpl implements UserService{
             throw new NoSuchElementException("User not found.");
         }
 
-        return UserMapper.user_to_userModel(found.get());
+        return UserMapper.user_to_userModel(found.get(),found.get().getEmails(),found.get().getAddress());
 
     }
 
@@ -102,9 +101,30 @@ public class UserServiceImpl implements UserService{
             throw new NoSuchElementException("Following user does not exist or already removed.");
         }
 
-        User updateUser = UserMapper.userModel_to_user(userModel);
+        if(userModel.getPassword() != null && userModel.getPassword().isEmpty() != true && !passwordEncoder.matches(found.get().getPassword(),userModel.getPassword())){
+            found.get().setPassword(passwordEncoder.encode(userModel.getPassword()));
+        }
+        
+        found.get().setUsername(userModel.getUsername());
+        found.get().setPhoneNumber(userModel.getPhoneNumber());
+        found.get().setFirstName(userModel.getFirstName());
+        found.get().setLastName(userModel.getLastName());
 
+        List<Email> emails = new ArrayList<>();
 
-        userRepository.save(updateUser);
+        for (EmailModel emailModel : userModel.getEmailAddress()) {
+            Email e = new Email();
+            e.setEmailAddress(emailModel.getEmailAddress());
+            e.setStatus(emailModel.getStatus());
+            e.setId(emailModel.getId());
+            emails.add(e);
+        }
+
+        found.get().setEmails(emails);
+
+        Address address = UserMapper.addressModel_to_address(userModel.getAddressModel());
+        found.get().setAddress(address);
+
+        userRepository.save(found.get());
     }
 }

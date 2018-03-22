@@ -52,11 +52,11 @@ public class UserMapper {
         return email;
     }
 
-    public static UserModel user_to_userModel(User user){
+    public static UserModel user_to_userModel(User user, List<Email> emails, Address address){
         UserModel userModel = new UserModel();
         userModel.setId(user.getId());
-        if(user.getAddress()!=null)
-            userModel.setAddressModel(address_to_addressModel(user.getAddress()));
+        if(address!=null)
+            userModel.setAddressModel(address_to_addressModel(address));
         userModel.setFirstName(user.getFirstName());
         userModel.setLastName(user.getLastName());
         userModel.setUsername(user.getUsername());
@@ -65,8 +65,8 @@ public class UserMapper {
 
         List<EmailModel> emailModels = new ArrayList<>();
 
-        if(user.getEmails()!=null)
-            for (Email email : user.getEmails()) {
+        if(emails!=null)
+            for (Email email : emails) {
                 email_to_emailModel(email);
             }
 

@@ -26,7 +26,6 @@ public class UserModel {
     @NotNull
     private String username;
 
-    @NotNull
     private String password;
 
     @Valid

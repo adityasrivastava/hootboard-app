@@ -5,20 +5,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema hootboard
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `hootboard` ;
-
--- -----------------------------------------------------
--- Schema hootboard
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `hootboard` DEFAULT CHARACTER SET utf8 ;
 USE `hootboard` ;
 
 -- -----------------------------------------------------
--- Table `hootboard`.`Address`
+-- Table `Address`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hootboard`.`Address` ;
+DROP TABLE IF EXISTS `Address` ;
 
-CREATE TABLE IF NOT EXISTS `hootboard`.`Address` (
+CREATE TABLE IF NOT EXISTS `Address` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
   `streetAddress1` VARCHAR(200) NULL,
   `streetAddress2` VARCHAR(200) NULL,
@@ -36,11 +31,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hootboard`.`User`
+-- Table `User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hootboard`.`User` ;
+DROP TABLE IF EXISTS `User` ;
 
-CREATE TABLE IF NOT EXISTS `hootboard`.`User` (
+CREATE TABLE IF NOT EXISTS `User` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(45) NULL,
   `lastName` VARCHAR(45) NULL,
@@ -58,18 +53,18 @@ CREATE TABLE IF NOT EXISTS `hootboard`.`User` (
   INDEX `addressIds_FK_idx` (`address` ASC),
   CONSTRAINT `user_address_FK`
     FOREIGN KEY (`address`)
-    REFERENCES `hootboard`.`Address` (`id`)
+    REFERENCES `Address` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hootboard`.`Email`
+-- Table `Email`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hootboard`.`Email` ;
+DROP TABLE IF EXISTS `Email` ;
 
-CREATE TABLE IF NOT EXISTS `hootboard`.`Email` (
+CREATE TABLE IF NOT EXISTS `Email` (
   `id` BIGINT(30) NOT NULL AUTO_INCREMENT,
   `emailAddress` VARCHAR(100) NULL,
   `status` INT NULL,
@@ -83,18 +78,18 @@ CREATE TABLE IF NOT EXISTS `hootboard`.`Email` (
   INDEX `email_user_FK_idx` (`user` ASC),
   CONSTRAINT `email_user_FK`
     FOREIGN KEY (`user`)
-    REFERENCES `hootboard`.`User` (`id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hootboard`.`UserRole`
+-- Table `UserRole`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hootboard`.`UserRole` ;
+DROP TABLE IF EXISTS `UserRole` ;
 
-CREATE TABLE IF NOT EXISTS `hootboard`.`UserRole` (
+CREATE TABLE IF NOT EXISTS `UserRole` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `role` VARCHAR(200) NULL,
   `created` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
@@ -107,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `hootboard`.`UserRole` (
   INDEX `userRole_user_FK_idx` (`user` ASC),
   CONSTRAINT `userrole_user_FK`
     FOREIGN KEY (`user`)
-    REFERENCES `hootboard`.`User` (`id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

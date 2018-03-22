@@ -23,7 +23,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -93,7 +93,12 @@
           <url>jdbc:mysql://localhost:3306/hootboard?createDatabaseIfNotExist=true</url>
           <user>root</user>
           <password>aditya</password>
-          <schemas>database/migration/V1_0__dbschema.sql</schemas>
+          <schemas>
+            <schema>hootboard</schema>
+          </schemas>
+          <locations>
+            <location>filesystem:database/migration/</location>
+          </locations>
         </configuration>
         <dependencies>
           <dependency>

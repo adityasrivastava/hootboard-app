@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
 
-	<property name="USER_HOME" value="../logs" />
+	<property name="USER_HOME" value="logs" />
 
 	<appender name="loggly" class="ch.qos.logback.classic.net.SyslogAppender">
         <syslogHost>localhost</syslogHost>
@@ -15,7 +15,7 @@
 			 <pattern>%date{dd MMM yyyy;HH:mm:ss.SSS} [%thread] %-5level  %class{36}.%M %L  - %msg%n</pattern>
 		</encoder>
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>TRACE</level>
+			<level>DEBUG</level>
 		</filter>
 	</appender>
 
@@ -35,9 +35,9 @@
 
  <jmxConfigurator/>
 	<root>
-		<level value="INFO" />
+		<level value="DEBUG" />
 		<appender-ref ref="consoleAppender" />
- 		<appender-ref ref="dailyRollingFileAppender" />
+ 		<!--<appender-ref ref="dailyRollingFileAppender" />-->
  		<appender-ref ref="loggly" />
 	</root>
 </configuration>
