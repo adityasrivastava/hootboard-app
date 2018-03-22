@@ -1,345 +1,11 @@
 {
 	"info": {
+		"_postman_id": "be8b27b8-e63c-411d-9bd8-9335da9f76ba",
 		"name": "hootboard",
-		"_postman_id": "224d920f-d7b9-4fba-80a9-dc8fec2d565e",
 		"description": "Application",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Get All  User",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "localhost:8080/api/v1/users?page=0&size=10",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"users"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0",
-							"equals": true
-						},
-						{
-							"key": "size",
-							"value": "10",
-							"equals": true
-						}
-					]
-				},
-				"description": "Get all users with pagination"
-			},
-			"response": []
-		},
-		{
-			"name": "Authentication server request token",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "ca4688a3-d7b2-45ce-b25a-ad31f62ca565",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
-							"});",
-							"",
-							"pm.environment.set(\"token\", pm.response.json().access_token);"
-						]
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{secret_key}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{client_id}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8100/oauth/token?username={{username}}&password={{password}}&grant_type=password",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8100",
-					"path": [
-						"oauth",
-						"token"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "{{username}}",
-							"equals": true
-						},
-						{
-							"key": "password",
-							"value": "{{password}}",
-							"equals": true
-						},
-						{
-							"key": "grant_type",
-							"value": "password",
-							"equals": true
-						}
-					]
-				},
-				"description": ""
-			},
-			"response": [
-				{
-					"id": "085073d9-a5c2-4aee-acc2-d886918c0fff",
-					"name": "Request Token",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8100/oauth/token?username=test6&password=test6&grant_type=password",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8100",
-							"path": [
-								"oauth",
-								"token"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "test6",
-									"equals": true
-								},
-								{
-									"key": "password",
-									"value": "test6",
-									"equals": true
-								},
-								{
-									"key": "grant_type",
-									"value": "password",
-									"equals": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-store",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 03:07:52 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoidGVzdDYiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTIxNzMxMjcyLCJhdXRob3JpdGllcyI6WyJST0xFX0FOT05ZTU9VUyIsIlJPTEVfVVNFUiJdLCJqdGkiOiJmZGQyMTZiNi1kZjBhLTRmYTktYjVlNi1lNzFkNGE4MWI2OGEiLCJjbGllbnRfaWQiOiJ0ZXN0and0Y2xpZW50aWQifQ.qPJ4xwKnvUxuVOKPMKMbOuI1B1VzE_-gZkBEp_jePKU\",\"token_type\":\"bearer\",\"expires_in\":43199,\"scope\":\"read write\",\"jti\":\"fdd216b6-df0a-4fa9-b5e6-e71d4a81b68a\"}"
-				},
-				{
-					"id": "e35bb655-9b76-43f3-b827-a9b1a9c7688b",
-					"name": "Authentication server request token",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8100/oauth/token?username={{username}}&password={{password}}&grant_type=password",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8100",
-							"path": [
-								"oauth",
-								"token"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "{{username}}",
-									"equals": true
-								},
-								{
-									"key": "password",
-									"value": "{{password}}",
-									"equals": true
-								},
-								{
-									"key": "grant_type",
-									"value": "password",
-									"equals": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-store",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 13:50:59 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoidGVzdHVzZXJuYW1lIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTUyMTc2OTg1OSwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXSwianRpIjoiZDFkZjQ0YTAtYTFkZi00ZWI1LWEzYWItNmZkN2IzMzBlMDRlIiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.CGeUKFJGPaGkXjjryCZYuOd_uA1ujf2UdH78SUn4Mv0\",\"token_type\":\"bearer\",\"expires_in\":43199,\"scope\":\"read write\",\"jti\":\"d1df44a0-a1df-4eb5-a3ab-6fd7b330e04e\"}"
-				}
-			]
-		},
-		{
-			"name": "Get User",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "localhost:8080/api/v1/users/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"users",
-						"1"
-					]
-				},
-				"description": "Get User"
-			},
-			"response": []
-		},
 		{
 			"name": "Register New User",
 			"event": [
@@ -386,114 +52,18 @@
 					"path": [
 						"register"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": [
 				{
-					"id": "7ed10681-d5ea-4369-b384-0209f7b01725",
+					"id": "08702919-848b-443d-bae7-d32a951f0c22",
 					"name": "Register New User",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"disabled": false
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"NewUserName1\",\n\t\"password\": \"NewPassword1\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8100/register",
-							"host": [
-								"localhost"
-							],
-							"port": "8100",
-							"path": [
-								"register"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Length",
-							"value": "0",
-							"name": "Content-Length",
-							"description": "The length of the response body in octets (8-bit bytes)"
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 21 Mar 2018 20:56:46 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": ""
-				},
-				{
-					"id": "f4943214-ddd2-439b-9b7a-aca608b32947",
-					"name": "Register New User",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -566,7 +136,7 @@
 					],
 					"cookie": [
 						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
+							"expires": "Invalid Date",
 							"httpOnly": true,
 							"domain": "localhost",
 							"path": "/",
@@ -576,6 +146,375 @@
 						}
 					],
 					"body": ""
+				},
+				{
+					"id": "5146f736-d83d-462d-b5c1-e85d74fc227f",
+					"name": "Register New User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"NewUserName1\",\n\t\"password\": \"NewPassword1\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8100/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Mar 2018 20:56:46 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Authentication server request token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca4688a3-d7b2-45ce-b25a-ad31f62ca565",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"pm.environment.set(\"token\", pm.response.json().access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{secret_key}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8100/oauth/token?username={{username}}&password={{password}}&grant_type=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "f6faa7da-063e-419a-99e8-8d444d1af392",
+					"name": "Authentication server request token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8100/oauth/token?username={{username}}&password={{password}}&grant_type=password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{username}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-store",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 13:50:59 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoidGVzdHVzZXJuYW1lIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTUyMTc2OTg1OSwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXSwianRpIjoiZDFkZjQ0YTAtYTFkZi00ZWI1LWEzYWItNmZkN2IzMzBlMDRlIiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.CGeUKFJGPaGkXjjryCZYuOd_uA1ujf2UdH78SUn4Mv0\",\"token_type\":\"bearer\",\"expires_in\":43199,\"scope\":\"read write\",\"jti\":\"d1df44a0-a1df-4eb5-a3ab-6fd7b330e04e\"}"
+				},
+				{
+					"id": "b10b563d-b1bc-4142-8112-2f8ba0505698",
+					"name": "Request Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8100/oauth/token?username=test6&password=test6&grant_type=password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "test6"
+								},
+								{
+									"key": "password",
+									"value": "test6"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-store",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 03:07:52 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoidGVzdDYiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNTIxNzMxMjcyLCJhdXRob3JpdGllcyI6WyJST0xFX0FOT05ZTU9VUyIsIlJPTEVfVVNFUiJdLCJqdGkiOiJmZGQyMTZiNi1kZjBhLTRmYTktYjVlNi1lNzFkNGE4MWI2OGEiLCJjbGllbnRfaWQiOiJ0ZXN0and0Y2xpZW50aWQifQ.qPJ4xwKnvUxuVOKPMKMbOuI1B1VzE_-gZkBEp_jePKU\",\"token_type\":\"bearer\",\"expires_in\":43199,\"scope\":\"read write\",\"jti\":\"fdd216b6-df0a-4fa9-b5e6-e71d4a81b68a\"}"
 				}
 			]
 		},
@@ -592,7 +531,7 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -604,7 +543,7 @@
 					"raw": "{\n    \"firstName\" : \"ldksfjdl\",\n\t\"lastName\" : \"dskdssl\",\n    \"phoneNumber\" : \"201382211\",\n    \"emailAddress\" : [{\n    \t\"emailAddress\": \"dds@mm.com\",\n    \t\"status\": 1\n    }],\n    \"addressModel\" : {\n    \t\"streetAddress1\" : \"Test address\",\n    \t\"streetAddress2\" : \"Test address2\",\n    \t\"country\" : \"Test Country\",\n    \t\"state\" : \"test state\",\n    \t\"city\" : \"test city\",\n    \t\"postalCode\": \"209232\"\n    },\n    \"enabled\" : \"true\"\n}"
 				},
 				"url": {
-					"raw": "localhost:8200/api/v1/users?page=0&size=10",
+					"raw": "localhost:8200/api/v1/users",
 					"host": [
 						"localhost"
 					],
@@ -613,33 +552,223 @@
 						"api",
 						"v1",
 						"users"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0",
-							"equals": true
-						},
-						{
-							"key": "size",
-							"value": "10",
-							"equals": true
-						}
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": [
 				{
-					"id": "5edb2ed4-86d6-413c-be15-484179f6e4f9",
+					"id": "fd33dd15-ce97-4584-b3cb-fd3092fc73c8",
+					"name": "Get All Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\" : \"ldksfjdl\",\n\t\"lastName\" : \"dskdssl\",\n    \"phoneNumber\" : \"201382211\",\n    \"emailAddress\" : [{\n    \t\"emailAddress\": \"dds@mm.com\",\n    \t\"status\": 1\n    }],\n    \"addressModel\" : {\n    \t\"streetAddress1\" : \"Test address\",\n    \t\"streetAddress2\" : \"Test address2\",\n    \t\"country\" : \"Test Country\",\n    \t\"state\" : \"test state\",\n    \t\"city\" : \"test city\",\n    \t\"postalCode\": \"209232\"\n    },\n    \"enabled\" : \"true\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users?page=0&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 04:35:57 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"content\":[{\"id\":3,\"firstName\":\"ldksfjdl\",\"lastName\":\"dskdssl\",\"phoneNumber\":\"201382211\",\"username\":\"test\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":null,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false},{\"id\":4,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test2\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":5,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test3\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":6,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test4\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":7,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test5\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":8,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test6\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true},\"offset\":0,\"pageSize\":10,\"pageNumber\":0,\"paged\":true,\"unpaged\":false},\"totalPages\":1,\"last\":true,\"totalElements\":6,\"size\":10,\"number\":0,\"first\":true,\"numberOfElements\":6,\"sort\":{\"sorted\":false,\"unsorted\":true}}"
+				},
+				{
+					"id": "92cdb9ba-d036-4d08-a1bc-e5a392f10a3f",
+					"name": "Add User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\" : \"Jack\",\n\t\"lastName\" : \"Joe\",\n    \"phoneNumber\" : \"2013822111\",\n    \"emailAddress\" : [{\n    \t\"emailAddress\": \"test@mm.com\",\n    \t\"status\": 1\n    }],\n    \"username\": \"username1\",\n    \"password\": \"password1\",\n    \"addressModel\" : {\n    \t\"streetAddress1\" : \"Test address\",\n    \t\"streetAddress2\" : \"Test address2\",\n    \t\"country\" : \"Test Country\",\n    \t\"state\" : \"test state\",\n    \t\"city\" : \"test city\",\n    \t\"postalCode\": \"209232\"\n    },\n    \"enabled\" : \"true\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 13:54:22 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": ""
+				},
+				{
+					"id": "00d3d5b2-52a8-46b2-8aab-54989685a277",
 					"name": "Add User - Duplicate username",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -726,7 +855,7 @@
 					],
 					"cookie": [
 						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
+							"expires": "Invalid Date",
 							"httpOnly": true,
 							"domain": "localhost",
 							"path": "/",
@@ -736,504 +865,24 @@
 						}
 					],
 					"body": "{\"timestamp\":\"2018-03-22T13:59:17.392+0000\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"could not execute statement; SQL [n/a]; constraint [username]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement\",\"path\":\"/api/v1/users\"}"
-				},
-				{
-					"id": "068499f9-6abd-4f38-8105-6d5d6560918d",
-					"name": "Get All Users",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": false
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"firstName\" : \"ldksfjdl\",\n\t\"lastName\" : \"dskdssl\",\n    \"phoneNumber\" : \"201382211\",\n    \"emailAddress\" : [{\n    \t\"emailAddress\": \"dds@mm.com\",\n    \t\"status\": 1\n    }],\n    \"addressModel\" : {\n    \t\"streetAddress1\" : \"Test address\",\n    \t\"streetAddress2\" : \"Test address2\",\n    \t\"country\" : \"Test Country\",\n    \t\"state\" : \"test state\",\n    \t\"city\" : \"test city\",\n    \t\"postalCode\": \"209232\"\n    },\n    \"enabled\" : \"true\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8200/api/v1/users?page=0&size=10",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0",
-									"equals": true
-								},
-								{
-									"key": "size",
-									"value": "10",
-									"equals": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 04:35:57 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"content\":[{\"id\":3,\"firstName\":\"ldksfjdl\",\"lastName\":\"dskdssl\",\"phoneNumber\":\"201382211\",\"username\":\"test\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":null,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false},{\"id\":4,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test2\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":5,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test3\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":6,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test4\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":7,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test5\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false},{\"id\":8,\"firstName\":null,\"lastName\":null,\"phoneNumber\":null,\"username\":\"test6\",\"password\":null,\"emailAddress\":null,\"addressModel\":null,\"enabled\":false}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true},\"offset\":0,\"pageSize\":10,\"pageNumber\":0,\"paged\":true,\"unpaged\":false},\"totalPages\":1,\"last\":true,\"totalElements\":6,\"size\":10,\"number\":0,\"first\":true,\"numberOfElements\":6,\"sort\":{\"sorted\":false,\"unsorted\":true}}"
-				},
-				{
-					"id": "ca38f1ba-467c-4fa6-ad7f-c78c38572ae6",
-					"name": "Add User",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": false
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"firstName\" : \"Jack\",\n\t\"lastName\" : \"Joe\",\n    \"phoneNumber\" : \"2013822111\",\n    \"emailAddress\" : [{\n    \t\"emailAddress\": \"test@mm.com\",\n    \t\"status\": 1\n    }],\n    \"username\": \"username1\",\n    \"password\": \"password1\",\n    \"addressModel\" : {\n    \t\"streetAddress1\" : \"Test address\",\n    \t\"streetAddress2\" : \"Test address2\",\n    \t\"country\" : \"Test Country\",\n    \t\"state\" : \"test state\",\n    \t\"city\" : \"test city\",\n    \t\"postalCode\": \"209232\"\n    },\n    \"enabled\" : \"true\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8200/api/v1/users",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Length",
-							"value": "0",
-							"name": "Content-Length",
-							"description": "The length of the response body in octets (8-bit bytes)"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 13:54:22 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Get All  User",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "19692eee-6dcd-432e-83e4-b622e8e34255",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
+			"name": "Get User",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "localhost:8200/api/v1/users?page=0&size=10",
+					"raw": "localhost:8080/api/v1/users/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8200",
-					"path": [
-						"api",
-						"v1",
-						"users"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0",
-							"equals": true
-						},
-						{
-							"key": "size",
-							"value": "10",
-							"equals": true
-						}
-					]
-				},
-				"description": "Get all users with pagination"
-			},
-			"response": [
-				{
-					"id": "8ba09eee-20a0-4e47-b6e0-7beadcde4a74",
-					"name": "Get All  User",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:8200/api/v1/users?page=0&size=10",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0",
-									"equals": true
-								},
-								{
-									"key": "size",
-									"value": "10",
-									"equals": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 14:00:02 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"content\":[{\"id\":2,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username1\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":1,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false},{\"id\":4,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username2\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":3,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true},\"offset\":0,\"pageSize\":10,\"pageNumber\":0,\"paged\":true,\"unpaged\":false},\"totalPages\":1,\"last\":true,\"totalElements\":2,\"size\":10,\"number\":0,\"numberOfElements\":2,\"first\":true,\"sort\":{\"sorted\":false,\"unsorted\":true}}"
-				},
-				{
-					"id": "42c4fd41-9184-42cb-a766-f81ea3e9d188",
-					"name": "Get All  User",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:8200/api/v1/users?page=0&size=10",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0",
-									"equals": true
-								},
-								{
-									"key": "size",
-									"value": "10",
-									"equals": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 13:58:45 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"content\":[{\"id\":2,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username1\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":1,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true},\"offset\":0,\"pageSize\":10,\"pageNumber\":0,\"paged\":true,\"unpaged\":false},\"totalPages\":1,\"last\":true,\"totalElements\":1,\"size\":10,\"number\":0,\"numberOfElements\":1,\"first\":true,\"sort\":{\"sorted\":false,\"unsorted\":true}}"
-				}
-			]
-		},
-		{
-			"name": "Delete/Update Failed Request",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiVXNlck5hbWUxIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTUyMTc2NzAwMCwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXSwianRpIjoiYWVlNTgwMTgtNTIzNy00MWNhLTg2ODMtYjYyOGE4MGFjMWQzIiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.am1KWPgroiAKlXk291KJi04oYca6nMZfYunDQTUXSFg",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "localhost:8200/api/v1/users/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8200",
+					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -1241,196 +890,9 @@
 						"1"
 					]
 				},
-				"description": ""
+				"description": "Get User"
 			},
-			"response": [
-				{
-					"id": "41819ce2-ade6-456d-a3c4-0e4bb7d47c05",
-					"name": "Delete/Update Failed Request",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:8200/api/v1/users/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"1"
-							]
-						}
-					},
-					"status": "Internal Server Error",
-					"code": 500,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Connection",
-							"value": "close",
-							"name": "Connection",
-							"description": "Options that are desired for the connection"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 13:07:54 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"timestamp\":\"2018-03-22T13:07:54.558+0000\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Following user does not exist or already removed.\",\"path\":\"/api/v1/users/1\"}"
-				},
-				{
-					"id": "da3b5cf1-4bc3-4ab2-9573-0a81a8eacb67",
-					"name": "Delete Request",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:8200/api/v1/users/2",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"2"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Content-Length",
-							"value": "0",
-							"name": "Content-Length",
-							"description": "The length of the response body in octets (8-bit bytes)"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 14:22:01 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": ""
-				}
-			]
+			"response": []
 		},
 		{
 			"name": "Update Failed Body Response",
@@ -1447,7 +909,10 @@
 				},
 				"method": "PUT",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost:8200/api/v1/users/1",
 					"host": [
@@ -1460,111 +925,11 @@
 						"users",
 						"1"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": [
 				{
-					"id": "0e6955c3-a90a-4d7b-87ba-01e31f2b0c47",
-					"name": "Update Failed Body Response",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:8200/api/v1/users/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8200",
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"1"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate",
-							"name": "Cache-Control",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"key": "Connection",
-							"value": "close",
-							"name": "Connection",
-							"description": "Options that are desired for the connection"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json;charset=UTF-8",
-							"name": "Content-Type",
-							"description": "The mime type of this content"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 22 Mar 2018 13:10:00 GMT",
-							"name": "Date",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"key": "Expires",
-							"value": "0",
-							"name": "Expires",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache",
-							"name": "Pragma",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked",
-							"name": "Transfer-Encoding",
-							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff",
-							"name": "X-Content-Type-Options",
-							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY",
-							"name": "X-Frame-Options",
-							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block",
-							"name": "X-XSS-Protection",
-							"description": "Cross-site scripting (XSS) filter"
-						}
-					],
-					"cookie": [
-						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
-							"httpOnly": true,
-							"domain": "localhost",
-							"path": "/",
-							"secure": false,
-							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
-							"key": "JSESSIONID"
-						}
-					],
-					"body": "{\"timestamp\":\"2018-03-22T13:10:00.411+0000\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"Required request body is missing: public org.springframework.http.ResponseEntity<com.hootboard.model.UserModel> com.hootboard.api.controller.UserController.updateUser(com.hootboard.model.UserModel,java.security.Principal) throws com.hootboard.api.exception.RestException\",\"path\":\"/api/v1/users/1\"}"
-				},
-				{
-					"id": "8247e0ab-2638-4aa6-8f15-ecca7f266e62",
+					"id": "2a1cf28e-fa9d-40e7-8775-2dcff0c15902",
 					"name": "Update Failed Body Response",
 					"originalRequest": {
 						"method": "PUT",
@@ -1572,8 +937,7 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -1661,7 +1025,7 @@
 					],
 					"cookie": [
 						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
+							"expires": "Invalid Date",
 							"httpOnly": true,
 							"domain": "localhost",
 							"path": "/",
@@ -1671,6 +1035,604 @@
 						}
 					],
 					"body": "{\"timestamp\":\"2018-03-22T14:05:55.543+0000\",\"status\":400,\"error\":\"Bad Request\",\"errors\":[{\"codes\":[\"NotNull.userModel.password\",\"NotNull.password\",\"NotNull.java.lang.String\",\"NotNull\"],\"arguments\":[{\"codes\":[\"userModel.password\",\"password\"],\"arguments\":null,\"defaultMessage\":\"password\",\"code\":\"password\"}],\"defaultMessage\":\"must not be null\",\"objectName\":\"userModel\",\"field\":\"password\",\"rejectedValue\":null,\"bindingFailure\":false,\"code\":\"NotNull\"}],\"message\":\"Validation failed for object='userModel'. Error count: 1\",\"path\":\"/api/v1/users/1\"}"
+				},
+				{
+					"id": "9f5e6a98-4c13-4cd7-9648-2c97f3215d6d",
+					"name": "Update Failed Body Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Connection",
+							"value": "close",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 13:10:00 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"timestamp\":\"2018-03-22T13:10:00.411+0000\",\"status\":400,\"error\":\"Bad Request\",\"message\":\"Required request body is missing: public org.springframework.http.ResponseEntity<com.hootboard.model.UserModel> com.hootboard.api.controller.UserController.updateUser(com.hootboard.model.UserModel,java.security.Principal) throws com.hootboard.api.exception.RestException\",\"path\":\"/api/v1/users/1\"}"
+				}
+			]
+		},
+		{
+			"name": "Get All  User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "19692eee-6dcd-432e-83e4-b622e8e34255",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8200/api/v1/users?page=0&size=10",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Get all users with pagination"
+			},
+			"response": [
+				{
+					"id": "6f82b903-7cfc-4716-8c42-98e4483e7a7f",
+					"name": "Get All  User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users?page=0&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 13:58:45 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"content\":[{\"id\":2,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username1\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":1,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true},\"offset\":0,\"pageSize\":10,\"pageNumber\":0,\"paged\":true,\"unpaged\":false},\"totalPages\":1,\"last\":true,\"totalElements\":1,\"size\":10,\"number\":0,\"numberOfElements\":1,\"first\":true,\"sort\":{\"sorted\":false,\"unsorted\":true}}"
+				},
+				{
+					"id": "a98b6250-5711-4d64-a8e0-098c3a9edcb0",
+					"name": "Get All  User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users?page=0&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 14:00:02 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"content\":[{\"id\":2,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username1\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":1,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false},{\"id\":4,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username2\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":3,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true},\"offset\":0,\"pageSize\":10,\"pageNumber\":0,\"paged\":true,\"unpaged\":false},\"totalPages\":1,\"last\":true,\"totalElements\":2,\"size\":10,\"number\":0,\"numberOfElements\":2,\"first\":true,\"sort\":{\"sorted\":false,\"unsorted\":true}}"
+				}
+			]
+		},
+		{
+			"name": "Delete/Update Failed Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiVXNlck5hbWUxIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTUyMTc2NzAwMCwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXSwianRpIjoiYWVlNTgwMTgtNTIzNy00MWNhLTg2ODMtYjYyOGE4MGFjMWQzIiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.am1KWPgroiAKlXk291KJi04oYca6nMZfYunDQTUXSFg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8200/api/v1/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "9383120c-786a-4e58-a959-2d151feaf898",
+					"name": "Delete/Update Failed Request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Connection",
+							"value": "close",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 13:07:54 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": "{\"timestamp\":\"2018-03-22T13:07:54.558+0000\",\"status\":500,\"error\":\"Internal Server Error\",\"message\":\"Following user does not exist or already removed.\",\"path\":\"/api/v1/users/1\"}"
+				},
+				{
+					"id": "ba4199fe-32b2-4c10-93e7-30b660c120f6",
+					"name": "Delete Request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8200/api/v1/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Mar 2018 14:22:01 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "0",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff",
+							"name": "X-Content-Type-Options",
+							"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block",
+							"name": "X-XSS-Protection",
+							"description": "Cross-site scripting (XSS) filter"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"httpOnly": true,
+							"domain": "localhost",
+							"path": "/",
+							"secure": false,
+							"value": "29C04AAE0D3A5E994C5FB561EE5F0374",
+							"key": "JSESSIONID"
+						}
+					],
+					"body": ""
 				}
 			]
 		},
@@ -1689,7 +1651,10 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "localhost:8200/api/v1/users/2",
 					"host": [
@@ -1707,12 +1672,15 @@
 			},
 			"response": [
 				{
-					"id": "11ce30c0-982c-4d23-a08c-b0547b9583e1",
+					"id": "f6a60bb1-b258-426d-a419-bdf937c0004f",
 					"name": "Get User",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:8200/api/v1/users/2",
 							"host": [
@@ -1788,7 +1756,7 @@
 					],
 					"cookie": [
 						{
-							"expires": "Tue Jan 19 2038 08:44:07 GMT+0530 (IST)",
+							"expires": "Invalid Date",
 							"httpOnly": true,
 							"domain": "localhost",
 							"path": "/",
@@ -1800,6 +1768,41 @@
 					"body": "{\"id\":2,\"firstName\":\"Jack\",\"lastName\":\"Joe\",\"phoneNumber\":\"2013822111\",\"username\":\"username1\",\"password\":null,\"emailAddress\":null,\"addressModel\":{\"id\":1,\"streetAddress1\":\"Test address\",\"streetAddress2\":\"Test address2\",\"country\":\"Test Country\",\"state\":\"test state\",\"city\":\"test city\",\"postalCode\":\"209232\"},\"enabled\":false}"
 				}
 			]
+		},
+		{
+			"name": "Get All  User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users?page=0&size=10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Get all users with pagination"
+			},
+			"response": []
 		}
 	]
 }
