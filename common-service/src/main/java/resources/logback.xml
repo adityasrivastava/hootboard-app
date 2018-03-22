@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+	<property name="USER_HOME" value="../logs" />
+
+	<appender name="loggly" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>localhost</syslogHost>
+        <facility>SYSLOG</facility>
+        <port>514</port>
+        <suffixPattern>java %d{ISO8601,UTC} %p %t %c{0}.%M - %m%n</suffixPattern>
+    </appender>
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			 <pattern>%date{dd MMM yyyy;HH:mm:ss.SSS} [%thread] %-5level  %class{36}.%M %L  - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+	</appender>
+
+	<appender name="dailyRollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${USER_HOME}/daily_logs/hootboard-log.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<maxHistory>1</maxHistory>
+		</rollingPolicy>
+       	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+		<encoder>
+		    <pattern>%date{dd MMM yyyy;HH:mm:ss.SSS} [%thread] %-5level  %class{36}.%M %L  - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+ <jmxConfigurator/>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="consoleAppender" />
+ 		<appender-ref ref="dailyRollingFileAppender" />
+ 		<appender-ref ref="loggly" />
+	</root>
+</configuration>
+  

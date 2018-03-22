@@ -7,15 +7,15 @@
     <artifactId>hootboard-app</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>com.hootboard.api</groupId>
-  <artifactId>api-server</artifactId>
+  <groupId>com.hootboard.model</groupId>
+  <artifactId>model-service</artifactId>
   <version>1.0</version>
-  <name>api-server</name>
+  <name>model-service</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
-      <groupId>com.hootboard.api.service</groupId>
-      <artifactId>api-service</artifactId>
+      <groupId>com.hootboard.persistence</groupId>
+      <artifactId>persistence-service</artifactId>
       <version>1.0</version>
     </dependency>
     <dependency>
@@ -25,20 +25,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <executable>true</executable>
-          <jvmArguments>
-            -Xdebug
-            -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5200
-            -Duser.timezone=UTC
-          </jvmArguments>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
