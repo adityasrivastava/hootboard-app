@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+  hootboard-api:
+   container_name: hootboard_api
+   build:
+    context: .
+    dockerfile: ./Dockerfile
+   ports:
+    - "8200:8200"
+    - "5200:5200"
+   volumes:
+    - "../:/root"
+    - "./shared/.m2:/root/.m2"
+    - "./tools:/mnt/tools"
+   depends_on:
+    - hootboard-mysql
+   networks:
+    - net
+   entrypoint: /bin/bash -c "mvn clean install -DskipTests && mvn flyway:clean && mvn flyway:migrate && api-server && mvn spring-boot:run"
+  hootboard-auth-server:
+    container_name: hootboard_auth_server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8100:8100"
+      - "5200:5200"
+    volumes:
+      - "../:/root"
+      - "./shared/.m2:/root/.m2"
+      - "./tools:/mnt/tools"
+  hootboard-mysql:
+    container_name: hootboard_mysql
+    image: mysql
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: aditya
+      MYSQL_DATABASE: hootboard
+    volumes:
+      - "./db/mysql:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    networks:
+      - net
+networks:
+  net:
+    driver: bridge
